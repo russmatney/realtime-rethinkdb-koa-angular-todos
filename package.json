@@ -1,0 +1,37 @@
+{
+  "name": "realtime-rethinkdb-koa-angular-todos",
+  "version": "1.0.0",
+  "description": "Demo app for handling rethinkdb's realtime .changes() feature",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/russmatney/realtime-rethinkdb-koa-angular-todos.git"
+  },
+  "keywords": [
+    "rethinkdb",
+    "koa",
+    "angular",
+    "todos",
+    "realtime",
+    "sockets"
+  ],
+  "author": "Russell Matney",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/russmatney/realtime-rethinkdb-koa-angular-todos/issues"
+  },
+  "homepage": "https://github.com/russmatney/realtime-rethinkdb-koa-angular-todos",
+  "dependencies": {
+    "babel": "^5.1.11",
+    "koa": "^0.19.1",
+    "rethinkdbdash": "^2.0.2"
+  },
+  "devDependencies": {
+    "chai": "^2.2.0",
+    "gulp": "^3.8.11",
+    "mocha": "^2.2.4"
+  }
+}
