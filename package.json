@@ -4,7 +4,8 @@
   "description": "Demo app for handling rethinkdb's realtime .changes() feature",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "start": "babel-node app/server.js",
+    "watch": "babel-node `which gulp` nodemon"
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,7 @@
   "devDependencies": {
     "chai": "^2.2.0",
     "gulp": "^3.8.11",
+    "gulp-nodemon": "^2.0.2",
     "mocha": "^2.2.4"
   }
 }
