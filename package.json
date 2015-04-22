@@ -28,6 +28,7 @@
   "dependencies": {
     "babel": "^5.1.11",
     "koa": "^0.19.1",
+    "koa-static": "^1.4.9",
     "rethinkdbdash": "^2.0.2"
   },
   "devDependencies": {
