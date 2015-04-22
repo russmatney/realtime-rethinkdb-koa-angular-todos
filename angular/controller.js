@@ -1,8 +1,3 @@
-import angular from 'angular';
-
-console.log(angular);
-
-var app = angular.module('app', []);
 
 app.controller('TodosController',
           ['$scope',
@@ -12,4 +7,3 @@ app.controller('TodosController',
     console.log('ToDos controller');
   }]
 )
-

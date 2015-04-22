@@ -21,6 +21,7 @@ var watch = require('gulp-watch');
 
 gulp.task('scripts', function() {
   return gulp.src('angular/**/*.js')
+    .pipe(surgeon.stitch("app.js"))
     .pipe(gulp.dest('koa/dist/'));
 });
 
