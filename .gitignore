@@ -27,3 +27,4 @@ build/Release
 node_modules
 rethinkdb_data
 *jspm_packages
+koa/dist

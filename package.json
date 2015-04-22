@@ -4,7 +4,7 @@
   "description": "Demo app for handling rethinkdb's realtime .changes() feature",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node app/server.js",
+    "start": "babel-node koa/server.js",
     "watch": "babel-node `which gulp` nodemon"
   },
   "repository": {
@@ -36,11 +36,13 @@
     "chai": "^2.2.0",
     "gulp": "^3.8.11",
     "gulp-nodemon": "^2.0.2",
+    "gulp-surgeon": "^0.1.2",
+    "gulp-watch": "^4.2.4",
     "mocha": "^2.2.4"
   },
   "jspm": {
     "directories": {
-      "baseURL": "app/dist"
+      "baseURL": "koa/dist"
     },
     "dependencies": {
       "angular": "github:angular/bower-angular@^1.3.15"
