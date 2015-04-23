@@ -29,6 +29,7 @@
     "babel": "^5.1.11",
     "jspm": "^0.15.3",
     "koa": "^0.19.1",
+    "koa-route": "^2.4.1",
     "koa-static": "^1.4.9",
     "rethinkdbdash": "^2.0.2"
   },

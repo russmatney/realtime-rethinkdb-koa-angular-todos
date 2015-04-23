@@ -1,9 +1,9 @@
 
 app.controller('TodosController',
-          ['$scope',
-  function( $scope ) {
+          ['$scope', 'ApiService',
+  function( $scope ,  ApiService ) {
     console.log('ToDos controller');
-    console.log('ToDos controller');
-    console.log('ToDos controller');
+
+    ApiService.ping();
   }]
 )
