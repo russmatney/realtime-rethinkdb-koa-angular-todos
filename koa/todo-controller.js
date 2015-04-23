@@ -10,5 +10,12 @@ export default class TodoController {
     this.status = 200;
     yield next;
   }
+
+  *create(next) {
+    this.body = yield r.table('todos').insert({label: this.request.body.label});
+    this.status = 200;
+    yield next;
+  }
+
 }
 

@@ -9,6 +9,10 @@
         <li ng-repeat="todo in troller.todos">
           {{todo.label}}
         </li>
+        <li>
+          <input ng-model="newTodo.label" />
+          <button type="submit" ng-click="troller.submit(newTodo)">Add</button>
+        </li>
       </ol>
 
     </div>
