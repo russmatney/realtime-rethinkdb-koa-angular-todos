@@ -4,6 +4,11 @@ app.controller('TodosController',
   function( $scope ,  ApiService ) {
     console.log('ToDos controller');
 
-    ApiService.ping();
+    this.todos = [];
+    var self = this;
+    ApiService.list()
+      .then(function(todos) {
+        angular.extend(self.todos, todos);
+      })
   }]
 )

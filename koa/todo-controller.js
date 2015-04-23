@@ -4,8 +4,8 @@ export default class TodoController {
   }
 
   *list(next) {
-    console.log('listing');
     this.status = 200;
+    this.body = [{label: 'item 1'}];
     yield next;
   }
 }

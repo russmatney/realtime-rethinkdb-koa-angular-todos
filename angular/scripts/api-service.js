@@ -4,12 +4,13 @@ app.service('ApiService',
   function( $http ,  $q ) {
     console.log('ApiService');
 
-    this.ping = function() {
+    this.list = function() {
       var def = $q.defer();
       $http.get('/api/todos')
-        .success(function(res) {
-          console.log('res');
-          console.log(res);
+        .success(function(todos) {
+          console.log('todos!');
+          console.log(todos);
+          def.resolve(todos);
         })
         .error(function(err) {
           console.log('err');

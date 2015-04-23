@@ -2,39 +2,16 @@
   <head>
   </head>
   <body ng-app="app">
-    <div ng-controller="TodosController">
+    <div ng-controller="TodosController as troller">
       <h1>lift off</h1>
+
+      <ol>
+        <li ng-repeat="todo in troller.todos">
+          {{todo.label}}
+        </li>
+      </ol>
+
     </div>
-
-    <md-content class="md-padding">
-      <section layout="column" layout-align="center center">
-        <h1>Lift off.<h1>
-        <p>Sup boo.</p>
-        <p>Good luck in there, Dude!</p>
-
-        <h2>Login</h2>
-        <form name="LoginForm">
-          <div layout="column">
-
-            <md-input-container>
-              <label>Email</label>
-              <input ng-model="user.email" />
-            </md-input-container>
-
-            <md-input-container>
-              <label>Password</label>
-              <input ng-model="user.password" type="password" />
-            </md-input-container>
-
-            <md-button class="md-raised md-primary" type="button" ng-click="login(user)">
-              Submit
-            </md-button>
-          </div>
-        </form>
-      </section>
-    </md-content>
-
-
 
     <script src="jspm_packages/system.js"></script>
     <script src="config.js"></script>
