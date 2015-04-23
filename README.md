@@ -8,3 +8,15 @@ npm install
 jspm install
 gulp
 ```
+
+# Tech used
+
+- RethinkDB (driver - rethinkdbdash)
+- KoaJS
+- AngularJS
+- JSPM for front-end package management
+- Gulp as a build/dev tool
+- Babel for ES6/7 features
+- Primus as a webSocket abstraction
+- 
+
