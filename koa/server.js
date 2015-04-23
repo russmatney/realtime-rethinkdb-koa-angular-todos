@@ -3,10 +3,14 @@ var web = require('koa-static');
 var route = require('koa-route');
 var body = require('koa-bodyparser');
 
+var logger = require('koa-logger');
+
 import TodoController from "./todo-controller";
 import r from "./rethinkdb";
 
 var app = koa();
+
+app.use(logger());
 
 app.use(web(__dirname + '/dist'))
 app.use(body());
@@ -21,10 +25,22 @@ app.use(function*(next) {
   }
 })
 
-var todoController = new TodoController();
+app.use(function*(next) {
+  var feed = yield TodoController.todoFeed();
 
-app.use(route.get('/api/todos', todoController.list));
-app.use(route.post('/api/todos', todoController.create));
+  console.log('middleware runs');
+  feed.each(function(err, res) {
+    console.log('feed.each');
+    console.log(err);
+    console.log(res);
+  })
+
+  yield next;
+})
+
+app.use(route.get('/api/todos', TodoController.list));
+app.use(route.post('/api/todos', TodoController.create));
+app.use(route.delete('/api/todos/:id', TodoController.delete));
 
 app.listen(3000);
 console.log('app listening on 3000');

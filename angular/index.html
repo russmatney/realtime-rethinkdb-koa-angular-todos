@@ -8,6 +8,7 @@
       <ol>
         <li ng-repeat="todo in troller.todos">
           {{todo.label}}
+          <button type="submit" ng-click="troller.delete(todo)">Delete</button>
         </li>
         <li>
           <input ng-model="newTodo.label" />

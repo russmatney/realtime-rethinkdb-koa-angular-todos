@@ -21,5 +21,15 @@ app.controller('TodosController',
           newTodo.label = "err what";
         })
     }
+
+    this.delete = function(todo) {
+      ApiService.delete(todo)
+        .then(function() {
+          console.log('success');
+        }, function() {
+          console.log('error');
+        })
+
+    }
   }]
 )

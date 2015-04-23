@@ -1,20 +1,52 @@
 import r from "./rethinkdb";
 
-export default class TodoController {
-  constructor(options) {
-    this.options = options;
-  }
+var feed = null;
 
-  *list(next) {
-    this.body = yield r.table('todos');
-    this.status = 200;
-    yield next;
-  }
+export default {
+  list: function*() {
+    try {
+      console.log('listing todos');
+      this.body = yield r.table('todos');
+      this.status = 200;
+    } catch(err) {
+      this.body = { err: err };
+      this.status = 500;
+    }
+  },
 
-  *create(next) {
-    this.body = yield r.table('todos').insert({label: this.request.body.label});
-    this.status = 200;
-    yield next;
+  create: function*() {
+    try {
+      var newTodo = {
+        label: this.request.body.label
+      }
+      console.log('creating todo');
+      console.log(newTodo);
+      this.body = yield r.table('todos').insert(newTodo);
+      this.status = 201;
+    } catch(err) {
+      this.body = { err: err };
+      this.status = 500;
+    }
+  },
+
+  delete: function*(id) {
+    try {
+      console.log('deleting: ' + id);
+      this.body = yield r.table('todos').get(id).delete();
+      this.status = 200;
+    } catch(err) {
+      this.body = { err: err };
+      this.status = 500;
+    }
+  },
+
+  todoFeed: function*() {
+    if (!feed) {
+      feed = yield r.table('todos').changes();
+      return feed;
+    } else {
+      return feed;
+    }
   }
 
 }
