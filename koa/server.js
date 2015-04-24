@@ -55,7 +55,8 @@ co(function*() {
     console.log(err);
     console.log(res);
 
-    if (todoSocket.emit) {
+    if (todoSocket && todoSocket.emit) {
+      console.log('todoSocket all hunky dory');
 
       if (res.new_val && !res.old_val) {
         todoSocket.emit('newTodo', res.new_val);

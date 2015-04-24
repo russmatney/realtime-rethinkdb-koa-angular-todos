@@ -4,14 +4,28 @@ console.log(angular);
 
 var app = angular.module('app', []);
 
-var todoSocket = io.connect("http://localhost:3000/todos");
+app.run(
+          ['TodosStore',
+  function( TodosStore ) {
 
-todoSocket.on('newTodo', function(data) {
-  console.log('new Todo from socket')
-  console.log(data)
-});
+    var socket = io.connect("http://localhost:3000/todos");
 
-todoSocket.on('deletedTodo', function(data) {
-  console.log('deleted Todo from socket')
-  console.log(data)
-});
+    socket.on('newTodo', function(data) {
+      console.log('new Todo from socket')
+      console.log(data)
+
+      TodosStore.todos.push(data);
+
+    });
+
+    socket.on('deletedTodo', function(data) {
+      console.log('deleted Todo from socket')
+      console.log(data)
+
+      TodosStore.todos.splice(TodosStore.todos.indexOf(data), 1);
+
+    });
+
+  }]
+);
+

@@ -1,15 +1,25 @@
-
-app.controller('TodosController',
-          ['$scope', 'ApiService',
-  function( $scope ,  ApiService ) {
-    console.log('ToDos controller');
+app.service('TodosStore',
+          ['ApiService',
+  function( ApiService ) {
+    console.log('todos store');
 
     this.todos = [];
+
     var self = this;
     ApiService.list()
       .then(function(todos) {
         angular.extend(self.todos, todos);
       })
+
+  }]
+)
+
+app.controller('TodosController',
+          ['$scope', 'ApiService', 'TodosStore',
+  function( $scope ,  ApiService ,  TodosStore ) {
+    console.log('ToDos controller');
+
+    this.todos = TodosStore.todos;
 
     this.submit = function(newTodo) {
       ApiService.create(newTodo)
