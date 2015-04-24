@@ -5,8 +5,8 @@ console.log(angular);
 var app = angular.module('app', []);
 
 app.run(
-          ['TodosStore',
-  function( TodosStore ) {
+          ['TodosStore', '$rootScope',
+  function( TodosStore ,  $rootScope ) {
 
     var socket = io.connect("http://localhost:3000/todos");
 
@@ -15,7 +15,9 @@ app.run(
       console.log(data)
 
       //need $scope.$apply
-      TodosStore.todos.push(data);
+      $rootScope.$apply(function() {
+        TodosStore.todos.push(data);
+      });
 
     });
 
@@ -25,7 +27,9 @@ app.run(
 
       //need $scope.$apply
       //logic isn't exactly right
-      TodosStore.todos.splice(TodosStore.todos.indexOf(data), 1);
+      $rootScope.$apply(function() {
+        TodosStore.todos.splice(TodosStore.todos.indexOf(data), 1);
+      });
 
     });
 
