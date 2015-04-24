@@ -33,7 +33,8 @@
     "koa-logger": "^1.2.2",
     "koa-route": "^2.4.1",
     "koa-static": "^1.4.9",
-    "rethinkdbdash": "^2.0.2"
+    "rethinkdbdash": "^2.0.2",
+    "socket.io": "^1.3.5"
   },
   "devDependencies": {
     "chai": "^2.2.0",

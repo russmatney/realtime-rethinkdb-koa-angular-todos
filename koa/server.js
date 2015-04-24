@@ -3,6 +3,9 @@ var web = require('koa-static');
 var route = require('koa-route');
 var body = require('koa-bodyparser');
 
+var socketio = require('socket.io');
+var http = require('http');
+
 var logger = require('koa-logger');
 
 import TodoController from "./todo-controller";
@@ -42,6 +45,17 @@ app.use(route.get('/api/todos', TodoController.list));
 app.use(route.post('/api/todos', TodoController.create));
 app.use(route.delete('/api/todos/:id', TodoController.delete));
 
-app.listen(3000);
+var server = http.createServer(app.callback());
+var io = socketio(server);
+
+io.on('connection', function(socket) {
+  console.log('connection');
+  socket.emit('ping', 'dope');
+  socket.on('hello', function(data) {
+    console.log(data);
+  })
+})
+
+server.listen(3000);
 console.log('app listening on 3000');
 
