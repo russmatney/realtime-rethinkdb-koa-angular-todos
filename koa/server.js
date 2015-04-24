@@ -60,8 +60,10 @@ co(function*() {
 
       if (res.new_val && !res.old_val) {
         todoSocket.emit('newTodo', res.new_val);
+        todoSocket.broadcast.emit('newTodo', res.new_val);
       } else if (!res.new_val && res.old_val) {
         todoSocket.emit('deletedTodo', res.old_val);
+        todoSocket.broadcast.emit('deletedTodo', res.old_val);
       }
 
     }

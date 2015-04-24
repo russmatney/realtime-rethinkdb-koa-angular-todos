@@ -14,6 +14,7 @@ app.run(
       console.log('new Todo from socket')
       console.log(data)
 
+      //need $scope.$apply
       TodosStore.todos.push(data);
 
     });
@@ -22,6 +23,8 @@ app.run(
       console.log('deleted Todo from socket')
       console.log(data)
 
+      //need $scope.$apply
+      //logic isn't exactly right
       TodosStore.todos.splice(TodosStore.todos.indexOf(data), 1);
 
     });
