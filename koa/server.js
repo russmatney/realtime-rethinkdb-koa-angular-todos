@@ -3,6 +3,8 @@ var web = require('koa-static');
 var route = require('koa-route');
 var body = require('koa-bodyparser');
 
+var co = require('co');
+
 var socketio = require('socket.io');
 var http = require('http');
 
@@ -28,19 +30,6 @@ app.use(function*(next) {
   }
 })
 
-app.use(function*(next) {
-  var feed = yield TodoController.todoFeed();
-
-  console.log('middleware runs');
-  feed.each(function(err, res) {
-    console.log('feed.each');
-    console.log(err);
-    console.log(res);
-  })
-
-  yield next;
-})
-
 app.use(route.get('/api/todos', TodoController.list));
 app.use(route.post('/api/todos', TodoController.create));
 app.use(route.delete('/api/todos/:id', TodoController.delete));
@@ -48,11 +37,34 @@ app.use(route.delete('/api/todos/:id', TodoController.delete));
 var server = http.createServer(app.callback());
 var io = socketio(server);
 
-io.on('connection', function(socket) {
-  console.log('connection');
-  socket.emit('ping', 'dope');
-  socket.on('hello', function(data) {
-    console.log(data);
+
+var todoChannel = io.of('/todos');
+var todoSocket;
+
+todoChannel.on('connection', function(socket) {
+  todoSocket = socket;
+  console.log('connection to /todos');
+})
+
+co(function*() {
+  var feed = yield TodoController.todoFeed();
+
+  console.log('middleware runs');
+  feed.each(function(err, res) {
+    console.log('feed.each');
+    console.log(err);
+    console.log(res);
+
+    if (todoSocket.emit) {
+
+      if (res.new_val && !res.old_val) {
+        todoSocket.emit('newTodo', res.new_val);
+      } else if (!res.new_val && res.old_val) {
+        todoSocket.emit('deletedTodo', res.old_val);
+      }
+
+    }
+
   })
 })
 

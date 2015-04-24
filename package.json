@@ -27,6 +27,7 @@
   "homepage": "https://github.com/russmatney/realtime-rethinkdb-koa-angular-todos",
   "dependencies": {
     "babel": "^5.1.11",
+    "co": "^4.5.2",
     "jspm": "^0.15.3",
     "koa": "^0.19.1",
     "koa-bodyparser": "^1.5.0",
