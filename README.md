@@ -17,6 +17,5 @@ gulp
 - JSPM for front-end package management
 - Gulp as a build/dev tool
 - Babel for ES6/7 features
-- Primus as a webSocket abstraction
-
+- Socket.io
 
